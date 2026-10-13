@@ -1,0 +1,157 @@
+{
+  "projectPath": "/absolute/path/to/your/miniprogram",
+  "cliPath": "",
+  "appId": "your-wx-appid",
+  "launchTimeoutMs": 120000,
+  "cliAutoTimeoutMs": 45000,
+  "trustProject": true,
+  "manualCliLaunch": true,
+  "autoPort": 9420,
+  "cliServicePort": 9421,
+  "blockers": {
+    "enabled": true,
+    "maxRounds": 4,
+    "actionWaitMs": 800,
+    "nativeFallbacks": [
+      "authorizeAllow",
+      "confirmModal"
+    ],
+    "rules": [
+      {
+        "name": "privacy-consent",
+        "detectTexts": [
+          "个人信息保护指引",
+          "我已阅读并同意"
+        ],
+        "steps": [
+          {
+            "action": "tap",
+            "selector": "checkbox",
+            "required": false
+          },
+          {
+            "action": "tapText",
+            "text": "我已阅读",
+            "preferSelectors": [
+              "label",
+              "view",
+              "text"
+            ]
+          },
+          {
+            "action": "tapText",
+            "text": "同意",
+            "exact": true,
+            "preferSelectors": [
+              "button",
+              "view",
+              "text"
+            ],
+            "preferExact": true
+          }
+        ]
+      },
+      {
+        "name": "generic-modal-continue",
+        "detectTexts": [
+          "温馨提示",
+          "系统提示",
+          "提示",
+          "授权",
+          "权限",
+          "更新提醒",
+          "新版本",
+          "网络",
+          "失败",
+          "异常"
+        ],
+        "steps": [
+          {
+            "action": "tapAnyText",
+            "texts": [
+              "我知道了",
+              "知道了",
+              "确定",
+              "确认",
+              "好的",
+              "允许"
+            ],
+            "exact": true,
+            "required": false,
+            "preferSelectors": [
+              "button",
+              "view",
+              "text"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "generic-popup-exit",
+        "detectTexts": [
+          "关闭",
+          "跳过",
+          "稍后再说",
+          "暂不",
+          "取消"
+        ],
+        "steps": [
+          {
+            "action": "tapAnyText",
+            "texts": [
+              "关闭",
+              "跳过",
+              "稍后再说",
+              "暂不",
+              "取消"
+            ],
+            "exact": true,
+            "required": false,
+            "preferSelectors": [
+              "button",
+              "view",
+              "text"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "smoke": {
+    "includePages": [],
+    "excludePages": [],
+    "maxPages": 50,
+    "pageReadyTimeoutMs": 8000,
+    "afterPageOpenWaitMs": 1200,
+    "screenshotTimeoutMs": 10000,
+    "captureScreenshots": true,
+    "failOnConsoleError": true,
+    "failOnRequestError": false,
+    "requiredSelectors": []
+  },
+  "flows": [
+    {
+      "name": "search-demo",
+      "enabled": false,
+      "steps": [
+        {
+          "action": "reLaunch",
+          "path": "/pages/index/index"
+        },
+        {
+          "action": "tap",
+          "selector": ".search-input"
+        },
+        {
+          "action": "input",
+          "selector": ".search-input",
+          "text": "test"
+        },
+        {
+          "action": "screenshot",
+          "name": "search-result"
+        }
+      ]
+    }
+  ]
+}

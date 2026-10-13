@@ -1,0 +1,19 @@
+{
+  "name": "miniprogram-test-runner",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Copyable WeChat Mini Program smoke test runner.",
+  "main": "bin/run.js",
+  "scripts": {
+    "test": "node bin/run.js",
+    "doctor": "node bin/run.js --doctor",
+    "find-cli": "node bin/run.js --find-cli",
+    "fix-cli": "node bin/run.js --find-cli --write-config"
+  },
+  "dependencies": {
+    "miniprogram-automator": "^0.12.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

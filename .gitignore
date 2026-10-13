@@ -1,0 +1,7 @@
+node_modules/
+.runtime/
+reports/*.html
+reports/*.json
+screenshots/*.png
+screenshots/*.jpg
+screenshots/*.jpeg
